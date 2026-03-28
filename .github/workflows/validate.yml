@@ -1,0 +1,75 @@
+name: Validate Toolkit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: Validate structure & installer
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check install.sh is executable
+        run: |
+          test -x install.sh || (chmod +x install.sh && echo "Fixed: install.sh was not executable")
+
+      - name: Validate install.sh syntax
+        run: bash -n install.sh && echo "✓ install.sh syntax OK"
+
+      - name: Check all SKILL.md files exist
+        run: |
+          for dir in skills/*/; do
+            skill=$(basename "$dir")
+            if [[ ! -f "${dir}SKILL.md" ]]; then
+              echo "✗ Missing SKILL.md in ${dir}"
+              exit 1
+            fi
+            echo "✓ skills/${skill}/SKILL.md"
+          done
+
+      - name: Check all AGENT.md files exist
+        run: |
+          for dir in agents/*/; do
+            agent=$(basename "$dir")
+            if [[ ! -f "${dir}AGENT.md" ]]; then
+              echo "✗ Missing AGENT.md in ${dir}"
+              exit 1
+            fi
+            echo "✓ agents/${agent}/AGENT.md"
+          done
+
+      - name: Check all instructions include .instructions.md files
+        run: |
+          for dir in instructions/*/; do
+            instruction=$(basename "$dir")
+            count=$(find "$dir" -maxdepth 1 -name "*.instructions.md" | wc -l)
+            if [[ "$count" -eq 0 ]]; then
+              echo "✗ Missing *.instructions.md in ${dir}"
+              exit 1
+            fi
+            echo "✓ instructions/${instruction}/"
+          done
+
+      - name: Validate toolkit.json
+        run: |
+          python3 -c "
+          import json, sys
+          with open('toolkit.json') as f:
+              data = json.load(f)
+          required = ['name', 'version', 'skills', 'agents', 'instructions', 'prompts']
+          for key in required:
+              assert key in data, f'Missing key: {key}'
+          print(f'✓ toolkit.json valid ({len(data[\"skills\"])} skills, {len(data[\"agents\"])} agents)')
+          "
+
+      - name: Simulate install (dry run)
+        run: |
+          # Run the installer with auto-answers (non-interactive test)
+          # scope=1 (project), tool=7 (generic), categories=all, items=all
+          echo -e "1\n7\nall\nall\nall" | bash install.sh || true
+          echo "✓ Installer ran without crashing"

@@ -1,0 +1,131 @@
+# 🧰 toolkit
+
+> My personal AI coding toolkit — skills, agents, instructions, and prompts for any AI coding tool.
+
+## Quick Install
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/toolkit/main/install.sh | bash
+```
+
+That's it. The installer is interactive, colourful, and requires only `bash` and `curl` — no Node, Python, or any other dependency.
+
+## What's inside
+
+| Category | What | Count |
+|---|---|---|
+| **Skills** | Behaviour guides for AI agents (code review, TDD, debugging…) | 8 |
+| **Agents** | Specialised agent personas (planner, reviewer, debugger) | 3 |
+| **Instructions** | Reusable always-on or scoped behavior rules | 2 |
+| **Prompts** | Reusable system & task prompts | 3 |
+
+## Supported AI coding tools
+
+| Tool | Skills | Agents | Instructions | Prompts |
+|---|---|---|---|---|
+| **Claude Code** | `.claude/commands` | `.claude/agents` | `.claude/instructions` | `.claude/prompts` |
+| **Cursor** | `.cursor/rules` | `.cursor/agents` | `.cursor/rules` | `.cursor/rules` |
+| **GitHub Copilot** | `.github/copilot-instructions` | `.github/copilot-instructions` | `.github/instructions` | `.github/copilot-instructions` |
+| **Windsurf** | `.windsurf/rules` | `.windsurf/agents` | `.windsurf/rules` | `.windsurf/rules` |
+| **Aider** | `.aider/skills` | `.aider/agents` | `.aider/instructions` | `.aider/prompts` |
+| **Generic** | `.toolkit/skills` | `.toolkit/agents` | `.toolkit/instructions` | `.toolkit/prompts` |
+
+## Install scopes
+
+The installer asks which scope to use:
+
+| Scope | Where files go |
+|---|---|
+| **Project** | Current directory (`.claude/`, `.cursor/`, etc.) |
+| **Workspace** | `~/.config/toolkit/` |
+| **Global** | `~/toolkit/` |
+
+## Skills
+
+### `code-review`
+Structured multi-pass review with CRITICAL/MAJOR/MINOR/SUGGESTION severity labels. Always suggests a fix alongside every finding.
+
+### `test-driven-development`
+Enforces RED-GREEN-REFACTOR. Includes anti-patterns table and output format for TDD sessions.
+
+### `systematic-debugging`
+5-phase scientific debugging process: reproduce → characterise → hypothesise → fix → prevent. Includes common bug pattern checklist.
+
+### `git-workflow`
+Branch naming conventions, conventional commits, PR description template, safe merge practices.
+
+### `documentation`
+README structure template, API docstring format, inline comment rules, ADR template.
+
+### `security-audit`
+Full OWASP Top 10 checklist, secrets detection patterns, security finding report format.
+
+### `refactoring`
+Safe refactoring catalogue (Extract Function, Rename, Remove Dead Code…), code smell detector table.
+
+### `performance-analysis`
+Profiling tool guide per language, database query analysis, performance report format.
+
+## Agents
+
+### `planner`
+Translates vague feature requests into precise implementation plans with explicit file paths, verification steps, and dependency ordering.
+
+### `reviewer`
+Two-pass code reviewer: spec compliance first, then code quality. Uses CRITICAL/MAJOR/MINOR/NIT severity scale.
+
+### `debugger`
+Scientific method debugger. Forms hypotheses, designs experiments, binary-searches codebases. Never guesses.
+
+## Instructions
+
+### `code-quality`
+Scoped coding defaults for readability, maintainability, and explicit error handling across common languages.
+
+### `repo-context`
+Repository-aware editing guardrails to preserve conventions, avoid unrelated edits, and improve verification discipline.
+
+## Prompts
+
+### `system/senior-engineer`
+System-level persona that defaults to senior engineering practices: clarity, correctness, maintainability, and pragmatic trade-offs.
+
+### `system/socratic-tutor`
+System-level teaching persona that guides through questions and incremental hints rather than jumping to direct answers.
+
+### `task/engineering-tasks`
+Reusable task templates for common engineering work (explain code, write tests, migrations, query optimisation, README drafting).
+
+## Adding your own
+
+1. Add a new folder under the right category (`skills/my-skill/SKILL.md`)
+2. Add instructions under `instructions/<name>/*.instructions.md`
+3. Add prompts under `prompts/system/*.md` or `prompts/task/*.md`
+4. Push to GitHub
+5. The installer auto-discovers everything — no config needed
+
+## Structure
+
+```
+toolkit/
+├── install.sh              ← the one-liner installer
+├── toolkit.json            ← manifest (auto-generated metadata)
+├── README.md
+├── skills/
+│   ├── code-review/SKILL.md
+│   ├── test-driven-development/SKILL.md
+│   └── ...
+├── agents/
+│   ├── planner/AGENT.md
+│   └── ...
+├── instructions/
+│   ├── code-quality/code-quality.instructions.md
+│   └── repo-context/repo-context.instructions.md
+└── prompts/
+    ├── system/
+    └── task/
+```
+
+## License
+
+MIT
