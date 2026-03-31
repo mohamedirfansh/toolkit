@@ -1,14 +1,18 @@
 # 🧰 toolkit
 
-> My personal AI coding toolkit — skills, agents, instructions, and prompts for any AI coding tool.
+> My personal AI coding toolkit — skills, agents, instructions, and prompts that I use.
+
+## What is this
+
+This repository contains useful skills, agents, instructions and prompt files I use when I code. Feel free to use them in your own project. I mainly use them with GitHub copilot but they can be used with any weapon of your choice.
 
 ## Quick Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/toolkit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/mohamedirfansh/toolkit/main/install.sh | bash
 ```
 
-That's it. The installer is interactive, colourful, and requires only `bash` and `curl` — no Node, Python, or any other dependency.
+That's it. The installer is interactive, and will guide you through the installation process.
 
 ## What's inside
 
@@ -19,7 +23,7 @@ That's it. The installer is interactive, colourful, and requires only `bash` and
 | **Instructions** | Reusable always-on or scoped behavior rules | 2 |
 | **Prompts** | Reusable system & task prompts | 3 |
 
-## Supported AI coding tools
+## Where these will end up in other AI coding tools
 
 | Tool | Skills | Agents | Instructions | Prompts |
 |---|---|---|---|---|
@@ -32,7 +36,7 @@ That's it. The installer is interactive, colourful, and requires only `bash` and
 
 ## Install scopes
 
-The installer asks which scope to use:
+The installer will ask you which scope to use:
 
 | Scope | Where files go |
 |---|---|
@@ -95,36 +99,6 @@ System-level teaching persona that guides through questions and incremental hint
 
 ### `task/engineering-tasks`
 Reusable task templates for common engineering work (explain code, write tests, migrations, query optimisation, README drafting).
-
-## Adding your own
-
-1. Add a new folder under the right category (`skills/my-skill/SKILL.md`)
-2. Add instructions under `instructions/<name>/*.instructions.md`
-3. Add prompts under `prompts/system/*.md` or `prompts/task/*.md`
-4. Push to GitHub
-5. The installer auto-discovers everything — no config needed
-
-## Structure
-
-```
-toolkit/
-├── install.sh              ← the one-liner installer
-├── toolkit.json            ← manifest (auto-generated metadata)
-├── README.md
-├── skills/
-│   ├── code-review/SKILL.md
-│   ├── test-driven-development/SKILL.md
-│   └── ...
-├── agents/
-│   ├── planner/AGENT.md
-│   └── ...
-├── instructions/
-│   ├── code-quality/code-quality.instructions.md
-│   └── repo-context/repo-context.instructions.md
-└── prompts/
-    ├── system/
-    └── task/
-```
 
 ## License
 
