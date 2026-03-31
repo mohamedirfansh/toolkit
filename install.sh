@@ -65,9 +65,28 @@ step()    { echo -e "\n${BWHITE}$*${RESET}"; }
 dim()     { echo -e "  ${DIM}$*${RESET}"; }
 header()  { echo -e "\n${BMAGENTA}━━━  $*  ━━━${RESET}\n"; }
 
+# Read interactive input safely, even when script stdin is piped (e.g. curl | bash).
+read_user_input() {
+  local __var_name="$1"
+  local __default="${2:-}"
+  local __value=""
+
+  if [[ -t 0 ]]; then
+    read -r __value || __value=""
+  elif [[ -r /dev/tty ]]; then
+    read -r __value < /dev/tty || __value=""
+  else
+    __value=""
+  fi
+
+  printf -v "$__var_name" '%s' "${__value:-$__default}"
+  return 0
+}
+
 confirm() {
   local prompt="$1"
   local default="${2:-y}"
+  local response
   local yn_hint
   if [[ "$default" == "y" ]]; then
     yn_hint="${BGREEN}Y${RESET}${DIM}/n${RESET}"
@@ -75,8 +94,7 @@ confirm() {
     yn_hint="${DIM}y/${RESET}${BGREEN}N${RESET}"
   fi
   echo -en "  ${BYELLOW}?${RESET}  ${prompt} [${yn_hint}]: "
-  read -r response
-  response="${response:-$default}"
+  read_user_input response "$default"
   [[ "$response" =~ ^[Yy] ]]
 }
 
@@ -209,8 +227,7 @@ select_scope() {
   echo -e "  ${BWHITE}3)${RESET} ${BBLUE}Global${RESET}     ${DIM}— installs in ~/toolkit (shared across all projects)${RESET}"
   echo ""
   echo -en "  ${BYELLOW}?${RESET}  Choose scope [${BGREEN}1${RESET}]: "
-  read -r scope_choice
-  scope_choice="${scope_choice:-1}"
+  read_user_input scope_choice "1"
 
   case "$scope_choice" in
     1) INSTALL_SCOPE="project";   INSTALL_BASE="." ;;
@@ -297,8 +314,7 @@ select_tool() {
   done
   echo ""
   echo -en "  ${BYELLOW}?${RESET}  Choose tool [${BGREEN}1${RESET}]: "
-  read -r tool_choice
-  tool_choice="${tool_choice:-1}"
+  read_user_input tool_choice "1"
 
   local idx=$((tool_choice - 1))
   local entry="${tools[$idx]:-${tools[0]}}"
@@ -322,8 +338,7 @@ select_and_install() {
   echo -e "  ${BWHITE}${ci})${RESET} ${BMAGENTA}all${RESET}  ${DIM}(install everything)${RESET}"
   echo ""
   echo -en "  ${BYELLOW}?${RESET}  Pick categories (e.g. ${DIM}1 3${RESET} or ${DIM}all${RESET}) [${BGREEN}all${RESET}]: "
-  read -r cat_input
-  cat_input="${cat_input:-all}"
+  read_user_input cat_input "all"
 
   local selected_cats=()
   if [[ "$cat_input" == "all" || "$cat_input" == "$ci" ]]; then
@@ -369,8 +384,7 @@ select_and_install() {
     echo -e "  ${BWHITE}${ii})${RESET} ${BGREEN}all${RESET}"
     echo ""
     echo -en "  ${BYELLOW}?${RESET}  Which ${cat} to install? (e.g. ${DIM}1 3${RESET} or ${DIM}all${RESET}) [${BGREEN}all${RESET}]: "
-    read -r item_input
-    item_input="${item_input:-all}"
+    read_user_input item_input "all"
 
     local selected_items=()
     if [[ "$item_input" == "all" || "$item_input" == "$ii" ]]; then
@@ -462,9 +476,7 @@ print_summary() {
   success "Tool:  ${BCYAN}${SELECTED_TOOL_LABEL}${RESET}"
   success "Scope: ${BBLUE}${INSTALL_SCOPE}${RESET} (${DIM}${INSTALL_BASE}${RESET})"
   echo ""
-  info "Restart your AI tool to pick up the new skills."
-  echo ""
-  echo -e "${DIM}  Contribute or update: https://github.com/${REPO_OWNER}/${REPO_NAME}${RESET}"
+  echo -e "${DIM}  Contribute to: https://github.com/${REPO_OWNER}/${REPO_NAME}${RESET}"
   echo ""
 }
 
