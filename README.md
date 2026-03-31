@@ -9,7 +9,7 @@ This repository contains useful skills, agents, instructions and prompt files I 
 ## Quick Install
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mohamedirfansh/toolkit/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/mohamedirfansh/toolkit/master/install.sh | bash
 ```
 
 That's it. The installer is interactive, and will guide you through the installation process.

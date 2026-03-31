@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # ============================================================
 #  toolkit — AI coding toolkit installer
-#  Usage: curl -fsSL https://raw.githubusercontent.com/mohamedirfansh/toolkit/main/install.sh | bash
+#  Usage: curl -fsSL https://raw.githubusercontent.com/mohamedirfansh/toolkit/master/install.sh | bash
 # ============================================================
 
 set -euo pipefail
@@ -36,7 +36,7 @@ BG_CYAN='\033[46m'
 # ── config ──────────────────────────────────────────────────
 REPO_OWNER="${TOOLKIT_OWNER:-mohamedirfansh}"
 REPO_NAME="${TOOLKIT_REPO:-toolkit}"
-REPO_BRANCH="${TOOLKIT_BRANCH:-main}"
+REPO_BRANCH="${TOOLKIT_BRANCH:-master}"
 BASE_URL="https://raw.githubusercontent.com/${REPO_OWNER}/${REPO_NAME}/${REPO_BRANCH}"
 API_URL="https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/git/trees/${REPO_BRANCH}?recursive=1"
 
