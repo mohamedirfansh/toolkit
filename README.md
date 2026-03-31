@@ -29,7 +29,7 @@ That's it. The installer is interactive, and will guide you through the installa
 |---|---|---|---|---|
 | **Claude Code** | `.claude/commands` | `.claude/agents` | `.claude/instructions` | `.claude/prompts` |
 | **Cursor** | `.cursor/rules` | `.cursor/agents` | `.cursor/rules` | `.cursor/rules` |
-| **GitHub Copilot** | `.github/copilot-instructions` | `.github/copilot-instructions` | `.github/instructions` | `.github/copilot-instructions` |
+| **GitHub Copilot** | `.github/skills` | `.github/agents` | `.github/instructions` | `.github/prompts` |
 | **Windsurf** | `.windsurf/rules` | `.windsurf/agents` | `.windsurf/rules` | `.windsurf/rules` |
 | **Aider** | `.aider/skills` | `.aider/agents` | `.aider/instructions` | `.aider/prompts` |
 | **Generic** | `.toolkit/skills` | `.toolkit/agents` | `.toolkit/instructions` | `.toolkit/prompts` |

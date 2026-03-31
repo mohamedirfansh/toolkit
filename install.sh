@@ -264,7 +264,9 @@ get_tool_target_dir() {
       ;;
     copilot)
       case "$category" in
-        skills|prompts|agents) echo "${base}/.github/copilot-instructions" ;;
+        skills)                echo "${base}/.github/skills" ;;
+        agents)                echo "${base}/.github/agents" ;;
+        prompts)               echo "${base}/.github/prompts" ;;
         instructions)          echo "${base}/.github/instructions" ;;
         *)                     echo "${base}/.github/${category}" ;;
       esac
