@@ -1,3 +1,8 @@
+---
+name: code-review
+description: "Use when reviewing code, pull requests, or diffs to identify correctness, security, performance, readability, and maintainability issues."
+---
+
 # Skill: Code Review
 
 ## When to use this skill

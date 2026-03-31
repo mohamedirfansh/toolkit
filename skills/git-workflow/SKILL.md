@@ -1,3 +1,8 @@
+---
+name: git-workflow
+description: "Use when handling git operations including branching, commits, pull requests, rebases, merges, and conflict resolution."
+---
+
 # Skill: Git Workflow
 
 ## When to use this skill

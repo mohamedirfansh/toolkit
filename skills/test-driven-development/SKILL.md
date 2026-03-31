@@ -1,3 +1,8 @@
+---
+name: test-driven-development
+description: "Use when implementing features or fixes with a strict RED-GREEN-REFACTOR workflow and test-first discipline."
+---
+
 # Skill: Test-Driven Development
 
 ## When to use this skill

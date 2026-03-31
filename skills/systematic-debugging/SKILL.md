@@ -1,3 +1,8 @@
+---
+name: systematic-debugging
+description: "Use when diagnosing bugs or failures with a step-by-step reproducible process from reproduction through verification and prevention."
+---
+
 # Skill: Systematic Debugging
 
 ## When to use this skill

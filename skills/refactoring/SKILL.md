@@ -1,3 +1,8 @@
+---
+name: refactoring
+description: "Use when improving existing code structure without changing external behavior, especially when tests are available to preserve safety."
+---
+
 # Skill: Refactoring
 
 ## When to use this skill

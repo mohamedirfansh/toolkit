@@ -1,3 +1,9 @@
+---
+name: reviewer
+description: "Use when reviewing code, diffs, or pull requests for spec compliance, correctness, security, performance, and test quality."
+model: inherit
+---
+
 # Agent: Reviewer
 
 ## Identity

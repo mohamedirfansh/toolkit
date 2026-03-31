@@ -1,3 +1,9 @@
+---
+name: debugger
+description: "Use when debugging bugs, crashes, failing tests, and unexpected behavior with a hypothesis-driven, evidence-first workflow."
+model: inherit
+---
+
 # Agent: Debugger
 
 ## Identity

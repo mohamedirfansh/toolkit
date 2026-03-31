@@ -195,6 +195,9 @@ detect_tools() {
   [[ -f ".continue/config.json" ]] && DETECTED_TOOLS+=("continue")
   # Cody
   [[ -f ".sourcegraph/cody.json" ]] && DETECTED_TOOLS+=("cody")
+
+  # Keep function success independent of detection result.
+  return 0
 }
 
 # ── install scopes ───────────────────────────────────────────
@@ -407,7 +410,7 @@ install_item() {
       local candidate="${category}/${item}.${ext}"
       if fetch_file "$candidate" "${target_dir}/${item}.${ext}" 2>/dev/null; then
         success "Installed ${item}.${ext}"
-        ((TOTAL_INSTALLED++))
+        TOTAL_INSTALLED=$((TOTAL_INSTALLED + 1))
         return
       fi
     done
@@ -423,7 +426,7 @@ install_item() {
     fetch_file "$file_path" "$dest" && \
       dim "  ↳ ${rel_path}" || \
       warn "Failed: ${file_path}"
-    ((TOTAL_INSTALLED++))
+    TOTAL_INSTALLED=$((TOTAL_INSTALLED + 1))
   done <<< "$files"
 
   # Post-install hooks for specific tools

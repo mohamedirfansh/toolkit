@@ -1,3 +1,8 @@
+---
+name: documentation
+description: "Use when creating or improving technical documentation such as READMEs, API docs, inline comments, and architecture decision records."
+---
+
 # Skill: Documentation
 
 ## When to use this skill

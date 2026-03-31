@@ -1,3 +1,9 @@
+---
+name: planner
+description: "Use when turning feature requests into scoped requirements, technical design, and sequenced implementation tasks with verification steps."
+model: inherit
+---
+
 # Agent: Planner
 
 ## Identity

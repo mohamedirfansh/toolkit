@@ -1,3 +1,8 @@
+---
+name: security-audit
+description: "Use when auditing code for security vulnerabilities, hardening application behavior, and running pre-deployment security checks."
+---
+
 # Skill: Security Audit
 
 ## When to use this skill

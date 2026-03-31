@@ -1,3 +1,8 @@
+---
+name: performance-analysis
+description: "Use when investigating slow code, high memory usage, poor query performance, or planning measurable performance improvements."
+---
+
 # Skill: Performance Analysis
 
 ## When to use this skill
