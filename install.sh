@@ -416,6 +416,14 @@ install_item() {
 
   info "Installing ${BCYAN}${item}${RESET} → ${DIM}${target_dir}/${item}${RESET}"
 
+  # Support flat-file items (e.g. agents/debugger.md) as well as directory items.
+  if fetch_file "${category}/${item}" "${target_dir}/${item}" 2>/dev/null; then
+    success "Installed ${item}"
+    TOTAL_INSTALLED=$((TOTAL_INSTALLED + 1))
+    post_install_hook "$category" "$item" "$target_dir"
+    return
+  fi
+
   local files
   files=$(list_item_files "$item_prefix") || { warn "Could not list files for ${item}"; return; }
 

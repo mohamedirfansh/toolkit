@@ -72,6 +72,9 @@ Profiling tool guide per language, database query analysis, performance report f
 
 ## Agents
 
+Agent definitions are flat files under `agents/`:
+`agents/debugger.md`, `agents/planner.md`, `agents/reviewer.md`.
+
 ### `planner`
 Translates vague feature requests into precise implementation plans with explicit file paths, verification steps, and dependency ordering.
 
@@ -83,21 +86,27 @@ Scientific method debugger. Forms hypotheses, designs experiments, binary-search
 
 ## Instructions
 
-### `code-quality`
+Instruction definitions are flat files under `instructions/`:
+`instructions/code-quality.instructions.md`, `instructions/repo-context.instructions.md`.
+
+### `code-quality.instructions.md`
 Scoped coding defaults for readability, maintainability, and explicit error handling across common languages.
 
-### `repo-context`
+### `repo-context.instructions.md`
 Repository-aware editing guardrails to preserve conventions, avoid unrelated edits, and improve verification discipline.
 
 ## Prompts
 
-### `system/senior-engineer`
+Prompt definitions are flat files under `prompts/`:
+`prompts/senior-engineer.prompt.md`, `prompts/socratic-tutor.prompt.md`, `prompts/engineering-tasks.prompt.md`.
+
+### `senior-engineer.prompt.md`
 System-level persona that defaults to senior engineering practices: clarity, correctness, maintainability, and pragmatic trade-offs.
 
-### `system/socratic-tutor`
+### `socratic-tutor.prompt.md`
 System-level teaching persona that guides through questions and incremental hints rather than jumping to direct answers.
 
-### `task/engineering-tasks`
+### `engineering-tasks.prompt.md`
 Reusable task templates for common engineering work (explain code, write tests, migrations, query optimisation, README drafting).
 
 ## License
